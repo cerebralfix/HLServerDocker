@@ -22,11 +22,13 @@ RUN ./GenerateLicenseID.sh
 
 EXPOSE 11668
 
-ENV HEADUS_HOME=/usr/local/hlserver
-ENV HLBIN=$HEADUS_HOME/hlserver
-ENV HLCONF=$HEADUS_HOME/hlserver.conf
-ENV HLLOG_NUM=2
-ENV HLLOG_DAYS=7
-ENV HLLOG_NAME=$HEADUS_HOME/hlserver-%d.log
+#ENV HEADUS_HOME=/usr/local/hlserver
+#ENV HLBIN=$HEADUS_HOME/hlserver
+#ENV HLCONF=$HEADUS_HOME/hlserver.conf
+#ENV HLLOG_NUM=2
+#ENV HLLOG_DAYS=7
+#ENV HLLOG_NAME=$HEADUS_HOME/hlserver-%d.log
 
-CMD [ "$HLBIN -c,$HLCONF -l,$HLLOG_NUM,$HLLOG_DAYS,$HLLOG_NAME" ]
+RUN ls -al
+
+CMD [ "/usr/local/hlserver/hlserver","-c,/usr/local/hlserver/hlserver.conf", "-l,2,7,/usr/local/hlserver/hlserver-%d.log" ]

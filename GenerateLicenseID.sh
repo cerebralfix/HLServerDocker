@@ -5,7 +5,7 @@ CODE=hlmanager-code.txt
 LICENSE=hlmanager-license.txt
 
 # Launch Server
-./hlserver & sleep 10
+./hlserver & sleep 3
 
 if [ -f "$LICENSE" ]; then
     echo "adding licenses"
@@ -16,7 +16,7 @@ fi
 
 if [ ! -f "$CODE" ]; then
     echo "No HLCode generated, generating new HL Code";
-    ./hlmanager & sleep 10
+    ./hlmanager & sleep 3
     cat /tmp/hlmanager-code.txt
     cp /tmp/hlmanager-code.txt $CODE
 fi
