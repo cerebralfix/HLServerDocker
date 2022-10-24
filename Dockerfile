@@ -7,6 +7,9 @@
 # Linux Base
 FROM debian:latest
 
+# Port the HL Server operates on. I am assuming it is TCP.
+EXPOSE 11668
+
 # Set a Directory for the app
 WORKDIR /usr/local
 
@@ -17,13 +20,13 @@ ADD https://www.uvlayout.com/files/hlserver/lin/hlserver-f13-v2.11.tgz hlserver.
 RUN tar xvzfo hlserver.tgz \
     &&  rm hlserver.tgz
 
-# Inside extracted folder
+#inside the extracted folder
 WORKDIR /usr/local/hlserver
+
 # Add Launch Script
 ADD LaunchHLServer.sh ./
 
-# Port the HL Server operates on. I am assuming it is TCP.
-EXPOSE 11668
+RUN ls
 
 # Launch the server.
 CMD [ "/usr/local/hlserver/LaunchHLServer.sh" ]
