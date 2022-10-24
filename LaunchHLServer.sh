@@ -3,21 +3,21 @@
 # where the server is installed
 HEADUS_HOME=/usr/local/hlserver
 
-# where the code or license file is located
+# where the code and license file is located
 CODE=$HEADUS_HOME/hlmanager-code.txt
 LICENSE=$HEADUS_HOME/hlmanager-license.txt
 
 # PID for the server
 HLSERVER_PID=0
 
-# Executable
+# Executables
 HLBIN=$HEADUS_HOME/hlserver
 HLMAN=$HEADUS_HOME/hlmanager
 
 # The Config File to use
 HLCONF=$HEADUS_HOME/hlserver.conf
 
-# Log Settings and location
+# Log settings and location
 HLLOG_NUM=2
 HLLOG_DAYS=7
 HLLOG_NAME=hlserver-%d.log
@@ -34,6 +34,7 @@ fi
 # Make sure the server has started.
 sleep 3
 
+# if there isn't a code generated, create one and store it.
 if [ ! -f "$CODE" ] || [ ! -f "$HLCONF" ]; then
     echo "No HLCode generated, generating new HL Code";
 
@@ -50,6 +51,7 @@ if [ ! -f "$CODE" ] || [ ! -f "$HLCONF" ]; then
     kill -15 $HLMANAGER_PID
 fi
 
+# iterate through the license keys line by line and add them to the server.
 if [ -f "$LICENSE" ]; then
     echo "adding licenses"
     while read key; do 
@@ -59,4 +61,7 @@ if [ -f "$LICENSE" ]; then
     $HLMAN reload
 fi
 
+echo "Server Setup and Ready!"
+
+# wait for the hl server to exit.
 wait "$HLSERVER_PID"
