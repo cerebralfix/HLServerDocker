@@ -22,6 +22,7 @@ WORKDIR /usr/local/hlserver
 # Add Launch Script
 ADD LaunchHLServer.sh ./
 
+# Port the HL Server operates on. I am assuming it is TCP.
 EXPOSE 11668
 
 # Launch the server.
