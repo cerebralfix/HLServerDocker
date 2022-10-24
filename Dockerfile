@@ -19,8 +19,10 @@ RUN tar xvzfo hlserver.tgz \
 
 # Inside extracted folder
 WORKDIR /usr/local/hlserver
-ADD GenerateLicenseID.sh ./
+# Add Launch Script
+ADD LaunchHLServer.sh ./
 
 EXPOSE 11668
 
-CMD [ "/usr/local/hlserver/GenerateLicenseID.sh" ]
+# Launch the server.
+CMD [ "/usr/local/hlserver/LaunchHLServer.sh" ]
