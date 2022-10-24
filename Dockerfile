@@ -1,3 +1,9 @@
+# A docker for a floating licenses for HeadusUV https://www.uvlayout.com/
+# HLServer Support: https://www.uvlayout.com/support/hlserver/
+# HLServer Docker Git: https://github.com/cerebralfix/HLServerDocker/pkgs/container/hlserver
+# Container Registery: https://ghcr.io/cerebralfix/hlserver:latest
+# Add license file - add as volume mount to here: /usr/local/hlserver/hlmanager-license.txt
+
 # Linux Base
 FROM debian:latest
 
@@ -13,22 +19,8 @@ RUN tar xvzfo hlserver.tgz \
 
 # Inside extracted folder
 WORKDIR /usr/local/hlserver
-
-# Add license file - add as volume mount to here: /usr/local/hlserver
-#ADD hlmanager-license.txt ./
-
 ADD GenerateLicenseID.sh ./
-RUN ./GenerateLicenseID.sh
 
 EXPOSE 11668
 
-#ENV HEADUS_HOME=/usr/local/hlserver
-#ENV HLBIN=$HEADUS_HOME/hlserver
-#ENV HLCONF=$HEADUS_HOME/hlserver.conf
-#ENV HLLOG_NUM=2
-#ENV HLLOG_DAYS=7
-#ENV HLLOG_NAME=$HEADUS_HOME/hlserver-%d.log
-
-RUN ls -al
-
-CMD [ "/usr/local/hlserver/hlserver","-c,/usr/local/hlserver/hlserver.conf", "-l,2,7,/usr/local/hlserver/hlserver-%d.log" ]
+CMD [ "/usr/local/hlserver/GenerateLicenseID.sh" ]
