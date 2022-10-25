@@ -40,15 +40,12 @@ if [ ! -f "$CODE" ] || [ ! -f "$HLCONF" ]; then
 
     # Start the manager
     ./hlmanager &
-    HLMANAGER_PID=$1 &
     sleep 3
 
     echo "Email the following code to your vendor to get your license keys:"
     cat /tmp/hlmanager-code.txt
     cp /tmp/hlmanager-code.txt $CODE
     echo "Code is stored here: $CODE"
-
-    kill -15 $HLMANAGER_PID
 fi
 
 # iterate through the license keys line by line and add them to the server.
