@@ -40,7 +40,9 @@ if [ ! -f "$CODE" ] || [ ! -f "$HLCONF" ]; then
 
     # Start the manager
     ./hlmanager &
-    sleep 3
+
+    # Wait for the manager to do its thing.
+    sleep 5
 
     echo "Email the following code to your vendor to get your license keys:"
     cat /tmp/hlmanager-code.txt
