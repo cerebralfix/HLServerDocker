@@ -23,7 +23,7 @@ HLLOG_DAYS=7
 HLLOG_NAME=hlserver-%d.log
 
 # Launch Server, retain proccess ID
-if [! -f "$HLCONF" ]
+if [! -f "$HLCONF" ]; then
     $HLBIN -l,$HLLOG_NUM,$HLLOG_DAYS,$HLLOG_NAME & 
     HLSERVER_PID=$!
 else
