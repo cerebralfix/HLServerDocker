@@ -26,7 +26,5 @@ WORKDIR /usr/local/hlserver
 # Add Launch Script
 ADD LaunchHLServer.sh ./
 
-RUN ls
-
 # Launch the server.
 CMD [ "/usr/local/hlserver/LaunchHLServer.sh" ]
